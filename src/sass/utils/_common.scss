@@ -1,0 +1,67 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+// ==================================================================
+ul {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+// ==================================================================
+a {
+  text-decoration: none;
+}
+// ==================================================================
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  padding: 0;
+  margin: 0;
+}
+// ==================================================================
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+// ==================================================================
+.body {
+  font-family: $primary-font-family;
+  font-size: $primary-font-size;
+  color: $primary-text-color;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+
+  background-color: $primary-bg-color;
+}
+// ==================================================================
+.wrapper {
+  min-width: 320px;
+  padding: 0 20px;
+
+  @media screen and (min-width: 768px) {
+    padding: 0 75px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 1024px;
+    padding: 0 71px;
+  }
+}
+// ==================================================================
+.visualy-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+}
+// ==================================================================
