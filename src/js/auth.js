@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import { modalForm } from './open-modal-login';
 
 // =================Initialize Firebase=========================
 const firebaseConfig = {
@@ -23,10 +24,13 @@ class User {
   //getter and setter for Add-que, Add-to-list
 }
 //const user = {};
+
+modalForm.initForm(); //reset form elements
 //=====================================================================
 //
 //
 //=======================process LogIn=============================================
+
 document.querySelector('.modal-login__form').addEventListener('submit', logInUser);
 
 function logInUser(event) {
@@ -38,6 +42,7 @@ function logInUser(event) {
 
 function authWithEmailAndPassword(email, password) {
   const apiKey = firebaseConfig.apiKey;
+
   return fetch(
     `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`,
     {
@@ -62,8 +67,14 @@ function registrationNewUser(event) {
   const passwordOne = event.target.querySelector('.password-one').value;
   const passwordTwo = event.target.querySelector('.password-two').value;
 
-  if (passwordOne !== passwordTwo) {
-    renderMessage(`<p class='error'>Invalid repeat password. Try again!</p>`);
+  if (passwordTwo < 6) {
+    renderMessage(`<p class='error'>Password . Try again!</p>`, '.modal-signup__form');
+    return;
+  } else if (passwordOne !== passwordTwo) {
+    renderMessage(
+      `<p class='error'>Invalid repeat password. Try again!</p>`,
+      '.modal-signup__form',
+    );
     return;
   }
   RegistrationWithEmailAndPassword(email, passwordOne).then(isIdToken);
@@ -86,16 +97,21 @@ function RegistrationWithEmailAndPassword(email, password) {
 //==========other Functions=============================================================
 function isIdToken(token) {
   if (!token) {
-    renderMessage(`<p class='error'>Invalid email or password, try again</p>`);
+    renderMessage(
+      `<p class='error'>Invalid email or password, try again</p>`,
+      '.modal-login__form',
+    );
     return;
   }
   //user.idToken = token;
-  renderMessage(`<p class='success'>You are successfuly logged in!</p>`);
+  renderMessage(`<p class='success'>You are successfuly logged in!</p>`, '.modal-login__form');
+  modalForm.initForm();
 }
 
-function renderMessage(message) {
-  return (document.querySelector('.form__element.message').innerHTML = message);
+function renderMessage(message, toElement) {
+  return (document.querySelector(`${toElement} .form__element.message`).innerHTML = message);
 }
+
 //
 //
 //===========Process write to Firebase====================================================
