@@ -13,6 +13,7 @@ $secondary-text-color: #fff;
 $thirty-text-color: #545454;
 $accent-text-color: #ff6b08;
 $warning-text-color: #ff001b;
+$overlay-bg-color: rgba(0, 0, 0, 0.56);
 // ==================================================================
 
 // background colors
@@ -20,6 +21,12 @@ $primary-bg-color: #fff;
 $secondary-bg-color: #f7f7f7;
 $accent-bg-color: #ff6b08;
 $hover-accent-bg-color: #ff6b01;
+$error-color: #ff001b;
+// ==================================================================
+
+// animations
+$primary-animation: cubic-bezier(0.4, 0, 0.2, 1);
+//secondary-animation: cubic-bezier();
 // ==================================================================
 
 // brackpounts
