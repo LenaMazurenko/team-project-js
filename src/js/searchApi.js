@@ -160,13 +160,13 @@ function onFetchError() {
 //Spiner===================================================
 // const spinnerRef = document.querySelector('.preloader');
 
-const spinner = {
-  show() {
-    spinnerRef.classList.remove('is-hidden');
-  },
-  hide() {
-    setTimeout(() => {
-      spinnerRef.classList.add('is-hidden');
-    }, 550);
-  },
-};
+// const spinner = {
+//   show() {
+//     spinnerRef.classList.remove('is-hidden');
+//   },
+//   hide() {
+//     setTimeout(() => {
+//       spinnerRef.classList.add('is-hidden');
+//     }, 550);
+//   },
+// };
