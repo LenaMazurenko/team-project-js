@@ -61,10 +61,17 @@
   right: 10px;
   height: 18px;
   width: 18px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: none;
   background-color: #fff;
   cursor: pointer;
 
+  &--icon {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
   // &::before {
   //   position: absolute;
   //   top: 50%;
@@ -155,6 +162,10 @@
   &--genre {
     margin-left: 74.5px;
   }
+
+  &--date {
+    margin-left: 38.5px;
+  }
 }
 
 .movie-modal__about {
@@ -171,7 +182,7 @@
     width: 264px;
   }
 
-  @media screen and (min-width: $tablet) {
+  @media screen and (min-width: $desktop) {
     width: 396px;
   }
 }
@@ -195,6 +206,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
+  cursor: pointer;
   @include tripleAnimtaion(background-color, color, border);
 
   &:hover,
