@@ -10,27 +10,13 @@ const firebaseConfig = {
   messagingSenderId: '190660969997',
   appId: '1:190660969997:web:3040172a1df9b4994cf744',
 };
-
 const app = initializeApp(firebaseConfig);
 //===============================================================
-//
-//=====================class User===============================
-class User {
-  isLoginFormActive = true;
-
-  constructor(name, email, idT) {
-    (this.name = name), (this.email = email), (this.idToken = idT);
-  }
-  //getter and setter for Add-que, Add-to-list
-}
-//const user = {};
 
 modalForm.initForm(); //reset form elements
 //=====================================================================
-//
-//
-//=======================process LogIn=============================================
 
+//=======================process LogIn=============================================
 document.querySelector('.modal-login__form').addEventListener('submit', logInUser);
 
 function logInUser(event) {
@@ -57,7 +43,7 @@ function authWithEmailAndPassword(email, password) {
     .then(data => data.idToken);
 }
 //=====================================================================================
-//
+
 //==========================process SigUp===============================================
 document.querySelector('.modal-signup__form').addEventListener('submit', registrationNewUser);
 
