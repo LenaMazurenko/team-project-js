@@ -4,3 +4,5 @@ import './js/open-modal-login';
 import './js/loader';
 import './js/auth';
 import './js/header';
+
+import './js/searchApi';
