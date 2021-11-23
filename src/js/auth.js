@@ -12,20 +12,29 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 //===============================================================
+let isLoginFormActive = true;
+//let successfulLogin = false;
+let userEmail;
 
 modalForm.initForm(); //reset form elements
 //=====================================================================
 
-//=======================process LogIn=============================================
-document.querySelector('.modal-login__form').addEventListener('submit', logInUser);
+document.querySelector('.modal-login__form').addEventListener('submit', logInUserHandler);
+document
+  .querySelector('.modal-signup__form')
+  .addEventListener('submit', registrationNewUserHandler);
 
-function logInUser(event) {
+/*--------- event submit 'logIn-form ----------*/
+function logInUserHandler(event) {
   event.preventDefault();
+  isLoginFormActive = true;
   const email = event.target.querySelector('#email').value;
   const password = event.target.querySelector('#password').value;
+  userEmail = email;
   authWithEmailAndPassword(email, password).then(isIdToken);
 }
 
+/*--------- fetch-login to Firebase ------------*/
 function authWithEmailAndPassword(email, password) {
   const apiKey = firebaseConfig.apiKey;
 
@@ -44,28 +53,28 @@ function authWithEmailAndPassword(email, password) {
 }
 //=====================================================================================
 
-//==========================process SigUp===============================================
-document.querySelector('.modal-signup__form').addEventListener('submit', registrationNewUser);
-
-function registrationNewUser(event) {
+/*--------- event submit 'SignUp-form ----------*/
+function registrationNewUserHandler(event) {
   event.preventDefault();
+  isLoginFormActive = false;
   const email = event.target.querySelector('#email').value;
   const passwordOne = event.target.querySelector('.password-one').value;
   const passwordTwo = event.target.querySelector('.password-two').value;
+  console.log(passwordTwo.length);
 
-  if (passwordTwo < 6) {
-    renderMessage(`<p class='error'>Password . Try again!</p>`, '.modal-signup__form');
-    return;
-  } else if (passwordOne !== passwordTwo) {
-    renderMessage(
-      `<p class='error'>Invalid repeat password. Try again!</p>`,
-      '.modal-signup__form',
-    );
+  if (passwordTwo.length < 6) {
+    renderMessage(`<p class='error'>Password too short. Try again!</p>`);
     return;
   }
+  if (passwordOne !== passwordTwo) {
+    renderMessage(`<p class='error'>Invalid repeat password. Try again!</p>`);
+    return;
+  }
+  userEmail = email;
   RegistrationWithEmailAndPassword(email, passwordOne).then(isIdToken);
 }
 
+/*-------- fetch-signup to Firebase ------------*/
 function RegistrationWithEmailAndPassword(email, password) {
   const apiKey = firebaseConfig.apiKey;
   return fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`, {
@@ -83,42 +92,32 @@ function RegistrationWithEmailAndPassword(email, password) {
 //==========other Functions=============================================================
 function isIdToken(token) {
   if (!token) {
-    renderMessage(
-      `<p class='error'>Invalid email or password, try again</p>`,
-      '.modal-login__form',
-    );
+    //successfulLogin = false;
+    renderMessage(`<p class='error'>Invalid email or password, try again</p>`);
     return;
   }
   //user.idToken = token;
-  renderMessage(`<p class='success'>You are successfuly logged in!</p>`, '.modal-login__form');
+  //successfulLogin = true;
   modalForm.initForm();
+  renderMessage(`<p class='success'>You are successfuly logged in!</p>`);
+  successfulLogin();
 }
 
-function renderMessage(message, toElement) {
-  return (document.querySelector(`${toElement} .form__element.message`).innerHTML = message);
+/*--------- render Info-message about results to form ----------------*/
+function renderMessage(message) {
+  if (isLoginFormActive) {
+    return (document.querySelector('.modal-login__form .form__element.message').innerHTML =
+      message);
+  } else {
+    return (document.querySelector('.modal-signup__form .form__element.message').innerHTML =
+      message);
+  }
 }
 
-//
-//
-//===========Process write to Firebase====================================================
-/*
-const test = {
-  nameFilm: 'Hello',
-  rating: '7',
-  cost: '0',
-};
-
-document.querySelector('.add-to-list').addEventListener('click', writeDataToDb);
-
-function writeDataToDb() {
-  return fetch(`https://gitpodmy-default-rtdb.europe-west1.firebasedatabase.app/collection.json`, {
-    method: 'POST',
-    body: JSON.stringify(test),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then(response => response.json())
-    .then(response => console.log(response));
+/* update new markup in header when User successfully Login*/
+function successfulLogin() {
+  if (successfulLogin) {
+    modalForm.openModalBtn.classList.add('is-none');
+    modalForm.userEmail.textContent = `${userEmail}`;
+  }
 }
-*/
