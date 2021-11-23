@@ -13,8 +13,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 //===============================================================
 let isLoginFormActive = true;
-//let successfulLogin = false;
-let userEmail;
+let userEmail = '';
 
 modalForm.initForm(); //reset form elements
 //=====================================================================
@@ -23,6 +22,11 @@ document.querySelector('.modal-login__form').addEventListener('submit', logInUse
 document
   .querySelector('.modal-signup__form')
   .addEventListener('submit', registrationNewUserHandler);
+
+modalForm.LogOutBtn.addEventListener('click', () => {
+  userEmail = '';
+  successfulLogin();
+});
 
 /*--------- event submit 'logIn-form ----------*/
 function logInUserHandler(event) {
@@ -114,10 +118,9 @@ function renderMessage(message) {
   }
 }
 
-/* update new markup in header when User successfully Login*/
+/* update new markup in header when User  Login/LogOut*/
 function successfulLogin() {
-  if (successfulLogin) {
-    modalForm.openModalBtn.classList.add('is-none');
-    modalForm.userEmail.textContent = `${userEmail}`;
-  }
+  modalForm.LogInBtn.classList.toggle('is-none');
+  modalForm.userEmail.textContent = `${userEmail}`;
+  modalForm.LogOutBtn.classList.toggle('is-none');
 }
