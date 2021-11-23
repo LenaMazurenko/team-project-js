@@ -1,7 +1,8 @@
 /*----------open modal LogIN------------*/
 
 export const modalForm = {
-  openModalBtn: document.querySelector('button[data-action="login"]'),
+  LogInBtn: document.querySelector('button[data-action="login"]'),
+  LogOutBtn: document.querySelector('button[data-action="loguot"]'),
 
   closeModalBtn: document.querySelector('.btn__close'),
   backdrop: document.querySelector('.backdrop'),
@@ -25,7 +26,7 @@ export const modalForm = {
   },
 };
 
-modalForm.openModalBtn.addEventListener('click', toggleModal);
+modalForm.LogInBtn.addEventListener('click', toggleModal);
 modalForm.closeModalBtn.addEventListener('click', toggleModal);
 modalForm.linkToSignup.addEventListener('click', toggleForm);
 
