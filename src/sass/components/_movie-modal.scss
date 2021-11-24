@@ -9,11 +9,11 @@
   overflow: auto;
   @include animated(opacity);
 
-  &--is-hidden {
-    visibility: hidden;
-    opacity: 0;
-    pointer-events: none;
-  }
+  // &--is-hidden {
+  //   visibility: hidden;
+  //   opacity: 0;
+  //   pointer-events: none;
+  // }
 }
 
 .movie-modal {

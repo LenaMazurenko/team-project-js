@@ -83,19 +83,45 @@ const movie = {
 
 import movieModal from '../templates/movie-modal.hbs';
 
-const markup = movieModal(movie);
-document.body.insertAdjacentHTML('beforeend', markup);
+class MovieModal {
+  constructor(movie) {
+    this.markup = movieModal(movie);
+    this.refs;
+  }
 
-const refs = {
-  closeBtn: document.querySelector('[data-close]'),
-  modal: document.querySelector('[data-movieModal]'),
-};
+  appendMarkup() {
+    document.body.insertAdjacentHTML('beforeend', this.markup);
+  }
 
-refs.closeBtn.addEventListener('click', closeModal);
-refs.modal.addEventListener('click', e => {
-  if (e.target === e.currentTarget) closeModal();
-});
+  getRefs() {
+    this.refs = {
+      closeBtn: document.querySelector('[data-close]'),
+      modal: document.querySelector('[data-movieModal]'),
+      watchedBtn: document.querySelector('[data-addToWatched]'),
+      queueBtn: document.querySelector('[data-addToQueue]'),
+    };
+  }
 
-function closeModal(e) {
-  refs.modal.classList.add('movie-modal__overlay--is-hidden');
+  addEventListeners() {
+    this.refs.closeBtn.addEventListener('click', () => {
+      this.closeModal();
+    });
+
+    this.refs.modal.addEventListener('click', e => {
+      if (e.target === e.currentTarget) this.closeModal();
+    });
+
+    this.refs.watchedBtn.addEventListener('click', () => {});
+
+    this.refs.queueBtn.addEventListener('click', () => {});
+  }
+
+  closeModal() {
+    this.refs.modal.remove();
+  }
 }
+
+const modal = new MovieModal(movie);
+modal.appendMarkup();
+modal.getRefs();
+modal.addEventListeners();
