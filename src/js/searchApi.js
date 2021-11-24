@@ -1,6 +1,7 @@
 import getRefs from './getRefs';
 import filmsTpl from '../templates/search-films-gallery-markup.hbs';
 import debounce from 'lodash.debounce';
+// import spinner from './spinner';
 
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = '0d09eb187785fad1be6a14878e771552';
@@ -166,7 +167,7 @@ const spinner = {
   },
   hide() {
     setTimeout(() => {
-      // spinnerRef.classList.add('is-hidden');
+      spinnerRef.classList.add('is-hidden');
     }, 550);
   },
 };
