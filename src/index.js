@@ -5,3 +5,5 @@ import './js/loader';
 import './js/auth';
 import './js/header';
 import './js/movieModal';
+
+import './js/searchApi';
