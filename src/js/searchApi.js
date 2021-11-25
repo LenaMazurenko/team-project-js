@@ -93,9 +93,11 @@ function onSearch(e) {
 
   filmApiService.query = e.target.value;
   filmApiService.pageNum = 1;
+  refs.main.classList.add('is-hidden'); //-----------------убрать как появиться пагин
   // refs.pagination.classList.remove('is-hidden');
   // refs.errorMessage.classList.add('is-hidden');
   if (filmApiService.query === '') {
+    refs.main.classList.remove('is-hidden'); //-----------------убрать как появиться пагин
     // refs.pagination.classList.add('is-hidden');
     return;
   }
