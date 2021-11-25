@@ -21,17 +21,17 @@ const vars = {
 //is-none: display: none
 //is-visible: opacity:0
 
-// Кнопка поиска фильмов--------------------------------не нужна в searhcApi другая реализация
-// vars.searchBtn.addEventListener(
-//   'click',
-//   (Search = () => {
-//     if (vars.seearchInput.value === '') {
-//       vars.errorText.classList.remove('is-visible');
-//     } else {
-//       vars.errorText.classList.add('is-visible');
-//     }
-//   }),
-// );
+// Кнопка поиска фильмов
+vars.searchBtn.addEventListener(
+  'click',
+  (Search = () => {
+    if (vars.seearchInput.value === '') {
+      vars.errorText.classList.remove('is-visible');
+    } else {
+      vars.errorText.classList.add('is-visible');
+    }
+  })
+);
 
 //Поиск фильмов по Enter, если никто еще не биндил Enter
 /*window.addEventListener('keyup', (e) =>{
