@@ -8,6 +8,7 @@ export const modalForm = {
   backdrop: document.querySelector('.backdrop'),
   popup: document.querySelector('.popup'),
   linkToSignup: document.querySelector('.to_signup'),
+  linkToForgotPass: document.querySelector('.to_change-pass'),
   btnLoginSubmit: document.querySelector('.modal-login__form .btn__submit'),
   btnSignupSubmit: document.querySelector('.modal-signup__form .btn__submit'),
   formLogin: document.querySelector('.modal-login__form'),

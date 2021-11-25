@@ -31,6 +31,9 @@ modalForm.clearForm(); //reset form elements
 
 modalForm.formLogin.addEventListener('submit', logInUserHandler);
 modalForm.formSignup.addEventListener('submit', registrationNewUserHandler);
+modalForm.linkToForgotPass.addEventListener('click', () =>
+  renderMessage(`<p class='success'>Check your email and follow the instruction in letter</p>`),
+);
 
 modalForm.LogOutBtn.addEventListener('click', () => {
   user.userLogout();
