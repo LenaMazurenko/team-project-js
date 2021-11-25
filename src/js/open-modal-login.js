@@ -16,7 +16,7 @@ export const modalForm = {
   infoMessageStrSignup: document.querySelector('.modal-signup__form .message'),
   userEmail: document.querySelector('.nav__item .user__name'),
 
-  initForm() {
+  clearForm() {
     this.formLogin.reset();
     this.formSignup.reset();
     this.btnLoginSubmit.disabled = false;
@@ -31,13 +31,13 @@ modalForm.closeModalBtn.addEventListener('click', toggleModal);
 modalForm.linkToSignup.addEventListener('click', toggleForm);
 
 function toggleModal() {
-  modalForm.initForm();
+  modalForm.clearForm();
   modalForm.backdrop.classList.toggle('is-hidden');
   modalForm.popup.querySelector('.modal-login__form').classList.add('active');
   modalForm.popup.querySelector('.modal-signup__form').classList.remove('active');
 }
 function toggleForm() {
-  modalForm.initForm();
+  modalForm.clearForm();
   modalForm.popup.querySelector('.modal-login__form').classList.remove('active');
   modalForm.popup.querySelector('.modal-signup__form').classList.add('active');
 }
