@@ -2,12 +2,12 @@ import moviesList from '../templates/main-cards.hbs';
 
 const galleryList = document.getElementById('gallery');
 
- function renderMoviesList(movie) {
+function renderMoviesList(movie) {
   const markup = moviesList(movie);
   galleryList.innerHTML = markup;
 }
 
- function clearGalleryContainer() {
+function clearGalleryContainer() {
   galleryList.innerHTML = '';
 }
 
