@@ -31,6 +31,19 @@ export default class ApiService {
       
       .catch(err => console.log(err));
   }
+  searchGenres() {
+    const language = localStorage.getItem('language') || 'en-US';
+    //тут жестко заданный url, т.к. подгрузка жанров осуществляется без запросов пользователя, один раз,в самом начале работы
+    return fetch(
+      `https://api.themoviedb.org/3/genre/movie/list?api_key=${this.key}&language=${language}`,
+    )
+      .then(response => response.json())
+      .then(res => {
+        return res;
+      })
+      .then(data => localStorage.setItem('Genres', JSON.stringify(data.genres)))
+      .catch(err => console.log(err));
+  }
 
   
 }
