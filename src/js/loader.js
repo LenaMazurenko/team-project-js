@@ -1,10 +1,10 @@
 let hide = document.querySelector('.hide');
 
 window.addEventListener('load', () => {
-hide.classList.add('behind');
-setTimeout(() =>  {
+  hide.classList.add('behind');
+  setTimeout(() => {
     hide.remove();
-}, 3000);
+  }, 1000);
 });
 
 // Window.onload = function () {
