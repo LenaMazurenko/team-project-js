@@ -92,11 +92,14 @@
 .form__element {
   margin: 15px 0px;
 }
+
 .form__element.message .error {
   color: $warning-text-color;
+  font-weight: 600;
 }
 .form__element.message .success {
   color: green;
+  font-weight: 600;
 }
 
 .modal-login__form .form__element:last-child {

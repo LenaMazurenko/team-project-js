@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app';
+import { User } from './user-class';
 import { modalForm } from './open-modal-login';
 
 // =================Initialize Firebase=========================
@@ -13,35 +14,51 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 //===============================================================
 let isLoginFormActive = true;
-let userEmail = '';
 
-modalForm.initForm(); //reset form elements
+const user = new User();
+checkOnActiveUser();
+
+function checkOnActiveUser() {
+  const userData = JSON.parse(localStorage.getItem('user'));
+  if (userData) {
+    user.userLogin(userData.user.email, userData.user.id);
+    changeStatusUserOnPage();
+  }
+}
+
+modalForm.clearForm(); //reset form elements
 //=====================================================================
 
-document.querySelector('.modal-login__form').addEventListener('submit', logInUserHandler);
-document
-  .querySelector('.modal-signup__form')
-  .addEventListener('submit', registrationNewUserHandler);
+modalForm.formLogin.addEventListener('submit', logInUserHandler);
+modalForm.formSignup.addEventListener('submit', registrationNewUserHandler);
+modalForm.linkToForgotPass.addEventListener('click', () =>
+  renderMessage(`<p class='success'>Check your email and follow the instruction in letter</p>`),
+);
 
 modalForm.LogOutBtn.addEventListener('click', () => {
-  userEmail = '';
-  successfulLogin();
+  user.userLogout();
+  changeStatusUserOnPage();
+  localStorage.removeItem('user');
 });
+
+//=====================================================================================
 
 /*--------- event submit 'logIn-form ----------*/
 function logInUserHandler(event) {
   event.preventDefault();
   isLoginFormActive = true;
+  if (user.isLogin) {
+    renderMessage(`<p class='error'>You are LogIn! Please LogOut and try again.</p>`);
+    return;
+  }
   const email = event.target.querySelector('#email').value;
   const password = event.target.querySelector('#password').value;
-  userEmail = email;
   authWithEmailAndPassword(email, password).then(isIdToken);
 }
 
 /*--------- fetch-login to Firebase ------------*/
 function authWithEmailAndPassword(email, password) {
   const apiKey = firebaseConfig.apiKey;
-
   return fetch(
     `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`,
     {
@@ -53,7 +70,7 @@ function authWithEmailAndPassword(email, password) {
     },
   )
     .then(response => response.json())
-    .then(data => data.idToken);
+    .catch(error => console.log(error));
 }
 //=====================================================================================
 
@@ -61,10 +78,13 @@ function authWithEmailAndPassword(email, password) {
 function registrationNewUserHandler(event) {
   event.preventDefault();
   isLoginFormActive = false;
+  if (user.isLogin) {
+    renderMessage(`<p class='error'>You are LogIn! Please LogOut and try again.</p>`);
+    return;
+  }
   const email = event.target.querySelector('#email').value;
   const passwordOne = event.target.querySelector('.password-one').value;
   const passwordTwo = event.target.querySelector('.password-two').value;
-  console.log(passwordTwo.length);
 
   if (passwordTwo.length < 6) {
     renderMessage(`<p class='error'>Password too short. Try again!</p>`);
@@ -74,13 +94,14 @@ function registrationNewUserHandler(event) {
     renderMessage(`<p class='error'>Invalid repeat password. Try again!</p>`);
     return;
   }
-  userEmail = email;
+  user.email = email;
   RegistrationWithEmailAndPassword(email, passwordOne).then(isIdToken);
 }
 
 /*-------- fetch-signup to Firebase ------------*/
 function RegistrationWithEmailAndPassword(email, password) {
   const apiKey = firebaseConfig.apiKey;
+
   return fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`, {
     method: 'POST',
     body: JSON.stringify({ email, password, returnSecureToken: true }),
@@ -89,22 +110,22 @@ function RegistrationWithEmailAndPassword(email, password) {
     },
   })
     .then(response => response.json())
-    .then(data => data.idToken);
+    .catch(error => console.log(error));
 }
 //=======================================================================================
 //
 //==========other Functions=============================================================
-function isIdToken(token) {
-  if (!token) {
-    //successfulLogin = false;
+function isIdToken(data) {
+  if (!data.idToken) {
     renderMessage(`<p class='error'>Invalid email or password, try again</p>`);
+    console.log(data.error.message);
     return;
   }
-  //user.idToken = token;
-  //successfulLogin = true;
-  modalForm.initForm();
+  user.userLogin(data.email, data.idToken);
+  localStorage.setItem('user', JSON.stringify({ user }));
+  modalForm.clearForm();
   renderMessage(`<p class='success'>You are successfuly logged in!</p>`);
-  successfulLogin();
+  changeStatusUserOnPage();
 }
 
 /*--------- render Info-message about results to form ----------------*/
@@ -119,8 +140,8 @@ function renderMessage(message) {
 }
 
 /* update new markup in header when User  Login/LogOut*/
-function successfulLogin() {
+function changeStatusUserOnPage() {
   modalForm.LogInBtn.classList.toggle('is-none');
-  modalForm.userEmail.textContent = `${userEmail}`;
+  modalForm.userEmail.textContent = `${user.email}`;
   modalForm.LogOutBtn.classList.toggle('is-none');
 }
