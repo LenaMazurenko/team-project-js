@@ -95,11 +95,11 @@
 
 .form__element.message .error {
   color: $warning-text-color;
-  font-weight: 600;
+  font-weight: 500;
 }
 .form__element.message .success {
-  color: green;
-  font-weight: 600;
+  color: rgb(0, 128, 49);
+  font-weight: 500;
 }
 
 .modal-login__form .form__element:last-child {
