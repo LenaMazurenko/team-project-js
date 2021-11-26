@@ -6,6 +6,6 @@ export default function objectTransformations(results) {
   return results.map(result => ({
     ...result,
     release_date: result.release_date ? result.release_date.slice(0, 4) : "Unknown",
-    //genres: filterGenres(genres, result),
+    genres: filterGenres(genres, result),
   }));
 }

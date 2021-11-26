@@ -8,6 +8,7 @@ const { renderMoviesList, clearGalleryContainer } = resetRender;
 
 const finder = new ApiService();
 finder.searchType = 0;
+finder.searchGenres();
 
 
 export function popularMovies() {
