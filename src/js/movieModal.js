@@ -42,7 +42,6 @@ export default class MovieModal {
         toggleModal();
         return;
       }
-
       //============check on existence in FB========================
       checkForExistence('watched', this.object).then(response => {
         if (response === true) {
@@ -54,12 +53,12 @@ export default class MovieModal {
       });
     });
 
+    //======================   write to Firebase if user is login ========================
     this.refs.queueBtn.addEventListener('click', () => {
       if (!user.isLogin) {
         toggleModal();
         return;
       }
-
       //============check on existence in FB========================
       checkForExistence('queue', this.object).then(response => {
         if (response === true) {
