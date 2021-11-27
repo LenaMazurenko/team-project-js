@@ -2,11 +2,11 @@ import { user } from './auth';
 
 export function readFromFBHundler() {
   if (!user.isLogin) {
-    console.log('нет данных');
+    alert('You are not Login');
     return;
   }
   return fetch(
-    `https://gitpodmy-default-rtdb.europe-west1.firebasedatabase.app/collection/${user.idLocal}.json?auth=${user.id}`,
+    `https://gitpodmy-default-rtdb.europe-west1.firebasedatabase.app/collection/${user.idLocal}/${nameCollection}.json?auth=${user.id}`,
   )
     .then(response => response.json())
     .then(response => {
@@ -26,7 +26,7 @@ const test = {
 };
 export function writeToFBHundler(nameCollection) {
   if (!user.isLogin) {
-    console.log('вы не зарегистрировны!');
+    alert('You are not Login');
     return;
   }
   return fetch(
