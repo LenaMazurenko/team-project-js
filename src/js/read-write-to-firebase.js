@@ -1,10 +1,6 @@
 import { user } from './auth';
 
-export function readFromFBHundler() {
-  if (!user.isLogin) {
-    alert('You are not Login');
-    return;
-  }
+export function readFromFBHundler(nameCollection) {
   return fetch(
     `https://gitpodmy-default-rtdb.europe-west1.firebasedatabase.app/collection/${user.idLocal}/${nameCollection}.json?auth=${user.id}`,
   )
@@ -14,17 +10,18 @@ export function readFromFBHundler() {
         console.log('ошибка чтения из FB');
         //`<p class="error">${response.error}</p>`;
       }
-      console.log(response);
+      return response
+        ? Object.keys(response).map(key => ({
+            ...response[key],
+            id: key,
+          }))
+        : [];
     });
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 export function writeToFBHundler(nameCollection, object) {
-  if (!user.isLogin) {
-    alert('You are not Login');
-    return;
-  }
   return fetch(
     `https://gitpodmy-default-rtdb.europe-west1.firebasedatabase.app/collection/${user.idLocal}/${nameCollection}.json`,
     {

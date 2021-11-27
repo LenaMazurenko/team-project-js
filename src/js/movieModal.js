@@ -1,3 +1,4 @@
+import { async } from '@firebase/util';
 import movieModal from '../templates/movie-modal.hbs';
 import { user } from './auth';
 import { toggleModal } from './open-modal-login';
@@ -35,14 +36,22 @@ export default class MovieModal {
       if (e.target === e.currentTarget) this.closeModal();
     });
 
-    //////////////////   write to Firebase if user is login  /////////////
-
+    //======================   write to Firebase if user is login ========================
     this.refs.watchedBtn.addEventListener('click', () => {
       if (!user.isLogin) {
         toggleModal();
         return;
       }
-      writeToFBHundler('watched', this.object);
+
+      //============check on existence in FB========================
+      checkForExistence('watched', this.object).then(response => {
+        if (response === true) {
+          alert('This movie has already been added');
+        }
+        if (response === false) {
+          writeToFBHundler('watched', this.object);
+        }
+      });
     });
 
     this.refs.queueBtn.addEventListener('click', () => {
@@ -50,11 +59,26 @@ export default class MovieModal {
         toggleModal();
         return;
       }
-      writeToFBHundler('queue', this.object);
+
+      //============check on existence in FB========================
+      checkForExistence('queue', this.object).then(response => {
+        if (response === true) {
+          alert('This movie has already been added');
+        }
+        if (response === false) {
+          writeToFBHundler('queue', this.object);
+        }
+      });
     });
   }
 
   closeModal() {
     this.refs.modal.remove();
   }
+}
+
+async function checkForExistence(nameCollection, obj) {
+  return await readFromFBHundler(nameCollection).then(data => {
+    return data.some(item => item.imdb_id === obj.imdb_id);
+  });
 }
