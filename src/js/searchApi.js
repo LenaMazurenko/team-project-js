@@ -17,8 +17,8 @@ class VideoApiService {
   fetchVideo() {
     const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&page=${this.page}&query=${this.searchQuery}`;
     return fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
+      .then(response => response.json())
+      .then(data => {
         return data.results;
       })
       .finally(() => {
@@ -28,32 +28,28 @@ class VideoApiService {
 
   fetchFilmsPagesQ() {
     const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&page=${this.page}&query=${this.searchQuery}`;
-    return fetch(url).then((response) => response.json());
+    return fetch(url).then(response => response.json());
   }
 
   fetchGenresF() {
     const url = `${BASE_URL}/genre/movie/list?api_key=${API_KEY}`;
     return fetch(url)
-      .then((response) => response.json())
+      .then(response => response.json())
       .then(({ genres }) => {
         return genres;
       });
   }
 
   insertGenresToSearch() {
-    return this.fetchVideo().then((data) => {
-      return this.fetchGenresF().then((genresList) => {
-        return data.map((movie) => ({
+    return this.fetchVideo().then(data => {
+      return this.fetchGenresF().then(genresList => {
+        return data.map(movie => ({
           ...movie,
-          release_date: movie.release_date
-            ? movie.release_date.slice(0, 4)
-            : '',
-          first_air_date: movie.first_air_date
-            ? movie.first_air_date.slice(0, 4)
-            : '',
+          release_date: movie.release_date ? movie.release_date.slice(0, 4) : '',
+          first_air_date: movie.first_air_date ? movie.first_air_date.slice(0, 4) : '',
           genres: movie.genre_ids
             ? movie.genre_ids
-                .map((id) => genresList.filter((el) => el.id === id))
+                .map(id => genresList.filter(el => el.id === id))
                 .slice(0, 2)
                 .flat()
             : 'watch the movie and decide',
@@ -82,9 +78,9 @@ const filmApiService = new VideoApiService();
 
 refs.input.addEventListener(
   'input',
-  debounce((e) => {
+  debounce(e => {
     onSearch(e);
-  }, 1000)
+  }, 1000),
 );
 
 function onSearch(e) {
@@ -104,7 +100,7 @@ function onSearch(e) {
 
   filmApiService
     .insertGenresToSearch()
-    .then((data) => {
+    .then(data => {
       if (!data) {
         return;
       } else {
@@ -123,7 +119,7 @@ function onSearch(e) {
         }
       }
     })
-    .catch((err) => {
+    .catch(err => {
       // onFetchError(err);
     });
 }

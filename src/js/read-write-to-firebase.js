@@ -19,12 +19,8 @@ export function readFromFBHundler() {
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-const test = {
-  nameFilm: 'llllll',
-  rating: '0000000',
-  cost: 'yyyyyyy',
-};
-export function writeToFBHundler(nameCollection) {
+
+export function writeToFBHundler(nameCollection, object) {
   if (!user.isLogin) {
     alert('You are not Login');
     return;
@@ -33,7 +29,7 @@ export function writeToFBHundler(nameCollection) {
     `https://gitpodmy-default-rtdb.europe-west1.firebasedatabase.app/collection/${user.idLocal}/${nameCollection}.json`,
     {
       method: 'POST',
-      body: JSON.stringify(test),
+      body: JSON.stringify(object),
       headers: {
         'Content-Type': 'application/json',
       },

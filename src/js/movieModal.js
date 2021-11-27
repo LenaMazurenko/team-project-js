@@ -32,14 +32,15 @@ export default class MovieModal {
     this.refs.modal.addEventListener('click', e => {
       if (e.target === e.currentTarget) this.closeModal();
     });
-    //read from FB
+
+    //////////////////   write to Firebase if user is login  /////////////
+
     this.refs.watchedBtn.addEventListener('click', () => {
-      writeToFBHundler('watched');
+      writeToFBHundler('watched', this.object);
     });
 
-    //write to FB
     this.refs.queueBtn.addEventListener('click', () => {
-      writeToFBHundler('queue');
+      writeToFBHundler('queue', this.object);
     });
   }
 
