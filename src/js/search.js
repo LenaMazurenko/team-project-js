@@ -1,10 +1,8 @@
-import filmsTpl from '../templates/main-cards.hbs';
+import filmsTpl from '../templates/search-card.hbs';
 import debounce from 'lodash.debounce';
 import VideoApiService from './apiServiceSearch';
-// import spinner from './spinner';
 
-const BASE_URL = 'https://api.themoviedb.org/3';
-const API_KEY = '0d09eb187785fad1be6a14878e771552';
+// import spinner from './spinner';
 
 const refs = {
   input: document.querySelector('[data-input]'),
@@ -31,6 +29,7 @@ function onSearch(e) {
   filmApiService.query = e.target.value;
   filmApiService.pageNum = 1;
   refs.main.classList.add('is-hidden'); //-----------------убрать как появиться пагин
+
   // refs.pagination.classList.remove('is-hidden');
   // refs.errorMessage.classList.add('is-hidden');
   if (filmApiService.query === '') {
@@ -96,17 +95,3 @@ function onClear() {
 //   wrapper.innerHTML = '';
 //   fetchSearchFilmsByPage(page).then(renderFilmsList);
 // }
-
-//Spiner===================================================
-// const spinnerRef = document.querySelector('.preloader');
-
-// const spinner = {
-//   show() {
-//     spinnerRef.classList.remove('is-hidden');
-//   },
-//   hide() {
-//     setTimeout(() => {
-//       spinnerRef.classList.add('is-hidden');
-//     }, 550);
-//   },
-// };
