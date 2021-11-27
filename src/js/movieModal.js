@@ -1,4 +1,8 @@
 import movieModal from '../templates/movie-modal.hbs';
+import { readFromFBHundler, writeToFBHundler } from './read-write-to-firebase';
+//========================================================
+
+//=====================================================
 
 export default class MovieModal {
   constructor(movie) {
@@ -29,9 +33,15 @@ export default class MovieModal {
       if (e.target === e.currentTarget) this.closeModal();
     });
 
-    this.refs.watchedBtn.addEventListener('click', () => {});
+    //////////////////   write to Firebase if user is login  /////////////
 
-    this.refs.queueBtn.addEventListener('click', () => {});
+    this.refs.watchedBtn.addEventListener('click', () => {
+      writeToFBHundler('watched', this.object);
+    });
+
+    this.refs.queueBtn.addEventListener('click', () => {
+      writeToFBHundler('queue', this.object);
+    });
   }
 
   closeModal() {

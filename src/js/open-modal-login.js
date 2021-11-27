@@ -31,7 +31,7 @@ modalForm.LogInBtn.addEventListener('click', toggleModal);
 modalForm.closeModalBtn.addEventListener('click', toggleModal);
 modalForm.linkToSignup.addEventListener('click', toggleForm);
 
-function toggleModal() {
+export function toggleModal() {
   modalForm.clearForm();
   modalForm.backdrop.classList.toggle('is-hidden');
   modalForm.popup.querySelector('.modal-login__form').classList.add('active');

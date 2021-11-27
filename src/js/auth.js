@@ -1,4 +1,6 @@
 import { initializeApp } from 'firebase/app';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+
 import { User } from './user-class';
 import { modalForm } from './open-modal-login';
 
@@ -12,16 +14,18 @@ const firebaseConfig = {
   appId: '1:190660969997:web:3040172a1df9b4994cf744',
 };
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 //===============================================================
+
 let isLoginFormActive = true;
 
-const user = new User();
+export const user = new User();
 checkOnActiveUser();
 
 function checkOnActiveUser() {
   const userData = JSON.parse(localStorage.getItem('user'));
   if (userData) {
-    user.userLogin(userData.user.email, userData.user.id);
+    user.userLogin(userData.user.email, userData.user.id, userData.user.idLocal);
     changeStatusUserOnPage();
   }
 }
@@ -72,6 +76,7 @@ function authWithEmailAndPassword(email, password) {
     .then(response => response.json())
     .catch(error => console.log(error));
 }
+
 //=====================================================================================
 
 /*--------- event submit 'SignUp-form ----------*/
@@ -121,7 +126,7 @@ function isIdToken(data) {
     console.log(data.error.message);
     return;
   }
-  user.userLogin(data.email, data.idToken);
+  user.userLogin(data.email, data.idToken, data.localId);
   localStorage.setItem('user', JSON.stringify({ user }));
   modalForm.clearForm();
   renderMessage(`<p class='success'>You are successfuly logged in!</p>`);
