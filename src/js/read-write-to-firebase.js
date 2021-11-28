@@ -23,7 +23,7 @@ export function readFromFBHundler(nameCollection) {
 
 export function writeToFBHundler(nameCollection, object) {
   return fetch(
-    `https://gitpodmy-default-rtdb.europe-west1.firebasedatabase.app/collection/${user.idLocal}/${nameCollection}.json`,
+    `https://gitpodmy-default-rtdb.europe-west1.firebasedatabase.app/collection/${user.idLocal}/${nameCollection}.json?auth=${user.id}`,
     {
       method: 'POST',
       body: JSON.stringify(object),
