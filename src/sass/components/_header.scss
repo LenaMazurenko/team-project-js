@@ -1,14 +1,31 @@
 //full header cover
 .home-open{
-    background:  linear-gradient(to left, $overlay-bg-color 40%, $overlay-bg-color 100%), url('.././images/header-images/desktop/header-home-desktop1x.jpg');
+    @media screen and(max-width:319px){
+        background:  linear-gradient(to left, $overlay-bg-color 40%, $overlay-bg-color 100%), 
+        url('.././images/header-images/tablet/header-home-tablet1x.jpg');
+    }
+    @media screen and(min-width:320px){
+        background:  linear-gradient(to left, $overlay-bg-color 40%, $overlay-bg-color 100%), 
+        url('.././images/header-images/tablet/header-home-tablet1x.jpg');
+    }
+    @media screen and(min-width:768px){
+        background:  linear-gradient(to left, $overlay-bg-color 40%, $overlay-bg-color 100%), 
+        url('.././images/header-images/desktop/header-home-desktop1x.jpg');
+    }
+    @media screen and(min-width:1024px){
+        background:  linear-gradient(to left, $overlay-bg-color 40%, $overlay-bg-color 100%), 
+        url('.././images/header-images/desktop/header-home-desktop1x.jpg');
+    }
 }
 
 
 .header__cover{
-    
+    @media screen and(max-width:319px){
+        padding: 46px 21px 33px;
+    }
 
     @media screen and(min-width:320px){
-        padding: 46px 21px 43px;
+        padding: 46px 21px 33px;
     }
     @media screen and(min-width:768px){
         padding: 41px 71px 59px;
@@ -27,6 +44,8 @@
 //logo part
 
 .logo__link{
+    display: flex;
+    align-items: center;
     margin-left: 10px;
     font-style: normal;
     font-weight: 500;
@@ -45,11 +64,38 @@
    }
 }
 
+.logo__text{
+    @media screen and(max-width:319px){
+        display: none;
+    }
+    @media screen and(min-width:320px){
+        display: none;
+    }
+    @media screen and(min-width:768px){
+        display: block;
+        margin-left: 10px;
+    }
+    
+}
+
+.home__block{
+    @media screen and(max-width:319px){
+        margin-top: 40px;
+    }
+    @media screen and(min-width:320px){
+        margin-top: 40px;
+    }
+    @media screen and(min-width:768px){
+        margin-top: 0;
+    }
+}
+
 
 //nav list part
 .nav__list{
     display: flex;
     margin-right: 0;
+    margin-left: auto;
 }
 
 .nav__item{
@@ -114,9 +160,10 @@
 
 //reg list
 .reg__list{
-    display: flex;
-    margin-right: 20px;
-    margin-left: auto;
+  display: flex;
+  margin-right: 0;
+  margin-left: 20px;
+  position: relative;
 }
 
 .reg__item{
@@ -125,13 +172,31 @@
     }
 }
 
+.reg__btn{
+    padding: 2px 5px;
+    border: 1px solid $hover-accent-bg-color;
+
+    color: $hover-accent-bg-color;
+
+    transition: $primary-animation .25s box-shadow, background-color, border-radius;
+
+    &:hover, &:focus{
+        color: $secondary-text-color;
+        box-shadow: 0 0 35px $hover-accent-bg-color;
+        background-color: $hover-accent-bg-color;
+        border-radius: 3px;
+    }
+}
+
 //user__name
 .user__name{
     color: $secondary-text-color;
-    margin-right: 15px;
-    margin-left: auto;
     font-size: 12px;
     line-height: 16px;
+
+    position: absolute;
+    right: 0;
+    bottom: -150%;
 }
 
 //searching part
@@ -199,15 +264,35 @@
 
     font-size: $primary-font-size;
     line-height: 16.41px;
-    text-align: center;
+    
+
+    @media screen and(min-width:320px){
+        text-align: left;
+    }
+    @media screen and(min-width:768px){
+        text-align: center;
+    }
 }
+
 
 
 //header CABINET part
 
 .cabinet-open{
-    background:  linear-gradient(to left, $overlay-bg-color 40%, $overlay-bg-color 100%), url('.././images/header-images/desktop/header-cab-desktop1x.jpg');
+    @media screen and(max-width:319px){
+        background:  linear-gradient(to left, $overlay-bg-color 40%, $overlay-bg-color 100%), 
+        url('.././images/header-images/tablet/header-cab-tablet1x.jpg');
+    }
+     @media screen and(min-width:320px){
+        background:  linear-gradient(to left, $overlay-bg-color 40%, $overlay-bg-color 100%), 
+        url('.././images/header-images/tablet/header-cab-tablet1x.jpg');
+    }
+    @media screen and(min-width:768px){
+        background:  linear-gradient(to left, $overlay-bg-color 40%, $overlay-bg-color 100%),
+        url('.././images/header-images/desktop/header-cab-desktop1x.jpg');
+    }
 }
+
 
 
 //parts

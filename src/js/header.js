@@ -50,8 +50,10 @@ vars.libraryBtn.addEventListener(
   (ToLibrary = () => {
     vars.headerBg.classList.add('cabinet-open');
     vars.headerBg.classList.remove('home-open');
-    vars.libraryBlock.classList.toggle('is-none');
-    vars.homeBlock.classList.toggle('is-none');
+    vars.libraryBlock.classList.remove('is-none');
+    vars.homeBlock.classList.add('is-none');
+    vars.libraryBtn.classList.add('current');
+    vars.homeBtn.classList.remove('current');
   })
 );
 
@@ -61,8 +63,10 @@ vars.homeBtn.addEventListener(
   (ToHome = () => {
     vars.headerBg.classList.add('home-open');
     vars.headerBg.classList.remove('cabinet-open');
-    vars.libraryBlock.classList.toggle('is-none');
-    vars.homeBlock.classList.toggle('is-none');
+    vars.libraryBlock.classList.add('is-none');
+    vars.homeBlock.classList.remove('is-none');
+    vars.libraryBtn.classList.remove('current');
+    vars.homeBtn.classList.add('current');
   })
 );
 
