@@ -1,0 +1,300 @@
+.footer__cover{
+    background-color: $secondary-bg-color;
+    
+    justify-content: center;
+    align-items: center;
+
+    @media screen and(max-width:319px){
+        display: block;
+
+        padding-top: 28px;
+        padding-bottom: 29px;
+    }
+
+    @media screen and(min-width:320px){
+        display: block;
+
+        padding-top: 28px;
+        padding-bottom: 29px;
+        
+    }
+    @media screen and(min-width:568px){
+        display: flex;
+
+        padding-top: 30px;
+        padding-bottom: 28px;
+    }
+}
+
+.copyright__list{
+    display: flex;
+
+    font-style: normal;
+    font-weight: normal;
+
+    color: $thirty-text-color;
+
+    
+    @media screen and(max-width:319px){
+        font-size: $primary-font-size;
+        line-height: $secondary-font-size;
+        justify-content: center;
+    }
+
+    @media screen and(min-width:$mobile){
+        font-size: $primary-font-size;
+        line-height: $secondary-font-size;
+        justify-content: center;
+    }
+    @media screen and(min-width:$tablet){
+        font-size: $secondary-font-size;
+        line-height: 19px;
+    }
+}
+
+.copyright__item{
+    position: relative;
+
+    margin-right: 8px;
+
+&::after{
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 1px;
+    background-color: $thirty-text-color;
+    margin-left: 4px;
+}
+}
+
+//team
+.devs-text__cover{
+    
+    font-style: normal;
+    font-weight: normal;
+
+    color: $thirty-text-color;
+
+    @media screen and(max-width:319px){
+        text-align: center;
+    }
+
+    @media screen and(min-width:$mobile){
+        text-align: center;
+    }
+    @media screen and(min-width:$tablet){
+        font-size: $secondary-font-size;
+    line-height: 18.75px;
+    }
+}
+
+.devs__icon{
+    animation-name: heartAnimation;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes heartAnimation {
+    0%{fill: $orange-color;}
+    25%{fill: $warning-text-color;}
+    50%{fill: green;}
+    75%{fill: blue;}
+    100%{fill: yellow;}
+}
+
+.devs__btn{
+    border: none;
+    background-color: transparent;
+
+    font-size: $secondary-font-size;
+    line-height: 19px;
+    text-decoration: underline;
+
+    color: $thirty-text-color;
+
+    transition: $primary-animation .25s color;
+
+    &:hover, &:focus{
+        cursor: pointer;
+        color: $hover-accent-bg-color;
+    }
+}
+
+
+//modal
+.team__backdrop{
+    position: fixed;
+    background-color: $team-back;
+
+    transform: translateY(150%);
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+
+    transition: $primary-animation .35s transform;
+}
+
+.team__title{
+    text-align: center;
+    color: $hover-accent-bg-color;
+    text-shadow: 2px 3px 5px $primary-text-color;
+
+    @media screen and(min-width:320px){
+        margin-bottom: 15px;
+    }
+    @media screen and(min-width:768px){
+       font-size: 34px;
+       line-height: 35px;
+
+        margin-bottom: 15px;
+    }
+}
+
+.team__block{
+    padding: 15px;
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 4px solid $orange-color;
+    border-top-right-radius: 10%;
+    border-bottom-left-radius: 10%;
+    animation: shadRotation 2.5s infinite;
+
+    background-color: $secondary-text-color;
+
+    @media screen and(min-width:320px){
+        overflow-y: scroll;
+        width: 94%;
+        height: 94%;
+    }
+    @media screen and(min-width:768px){
+        
+     }
+     @media screen and(min-width:1040px){
+         overflow-y: hidden;
+         max-width: 950px;
+      }
+}
+
+//rotat-anim
+@keyframes shadRotation {
+    0%{box-shadow: 40px 0 74px $orange-color;}
+    50%{box-shadow: -40px 0 74px $orange-color;}
+    100%{box-shadow: 40px 0 74px $orange-color;}
+}
+
+.person__photo{
+    @media screen and(max-width:319px){
+        width: 120px;
+        aspect-ratio: 9/12;
+    }
+    @media screen and(min-width:320px){
+        width: 120px;
+        aspect-ratio: 9/12;
+    }
+    @media screen and(min-width:768px){
+       width: 120px;
+       aspect-ratio: 9/12;
+    }
+    @media screen and(min-width:1040px){
+        width: 140px;
+        aspect-ratio: 9/12;
+     }
+}
+
+.person{
+    position: relative;
+}
+
+.person__name{
+    position: absolute;
+    background-color: $overlay-orange;
+    bottom: 0;
+    width: 100%;
+
+    text-align: center;
+
+    font-size: $secondary-font-size;
+    line-height: 19px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.person__job{
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+}
+
+.team__list{
+    @media screen and (max-width:319px) {
+        display: block;   
+    }
+    @media screen and (min-width:320px) {
+        display: block;   
+    }
+    @media screen and (min-width:768px) {
+        display: flex;
+        flex-wrap: wrap;
+     } 
+}
+
+.team__item{
+    background-color: white;
+    box-shadow: 2px 4px 6px $thirty-text-color;
+    border: 3px solid $hover-accent-bg-color;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    @media screen and (max-width:319px) {
+        margin: 10px;
+        justify-content: center;
+    }
+    @media screen and (min-width:320px) {
+        margin: 10px;
+        justify-content: center;
+    }
+    @media screen and (min-width:768px) {
+        margin: 30px;
+        flex-basis: calc((100% - 3 * 60px)/3);
+     } 
+    
+     @media screen and (min-width:1040px) {
+        flex-basis: calc((100% - 4 * 60px)/4);
+     }
+
+}
+
+
+.team__animate{
+    transform: translateY(0);
+    top: 0;
+    left: 0;
+
+    height: 100vh;
+    width: 100%;
+
+}
+
+.close-team__btn{
+    z-index: 999;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+
+    padding: 0;
+    background-color: transparent;
+    border: none;
+
+    fill: $primary-text-color;
+    transition: $primary-animation .35s transform, fill;
+
+    &:hover, &:focus{
+        cursor: pointer;
+        transform: rotate(360deg);
+        fill: $hover-accent-bg-color;
+    }
+}
