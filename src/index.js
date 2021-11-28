@@ -8,3 +8,5 @@ import './js/movieModal';
 
 import './js/searchApi';
 import './js/request-popular-movies';
+
+import './js/footer-team-modal';
