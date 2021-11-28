@@ -2,14 +2,12 @@ import filmsTpl from '../templates/search-card.hbs';
 import debounce from 'lodash.debounce';
 import VideoApiService from './apiServiceSearch';
 
-
 const refs = {
   input: document.querySelector('[data-input]'),
   gallery: document.querySelector('.gallery-list'),
   main: document.querySelector('.main'), //-----------------убрать как появиться пагин
   errorMessage: document.querySelector('[data-error]'),
 };
-
 
 // Поиск по ключевому слову
 const filmApiService = new VideoApiService();
@@ -20,7 +18,6 @@ refs.input.addEventListener(
     onSearch(e);
   }, 1000)
 );
-
 
 function onSearch(e) {
   e.preventDefault();
@@ -34,7 +31,6 @@ function onSearch(e) {
     return;
   }
 
-
   filmApiService
     .insertGenresToSearch()
     .then((data) => {
@@ -46,8 +42,10 @@ function onSearch(e) {
         } else {
           if (data.length < 20) {
             renderFilmsList(data);
+            onClickTheme();
           } else {
             renderFilmsList(data);
+            onClickTheme();
             fetchDataOfSearchFilms();
           }
         }
@@ -58,17 +56,14 @@ function onSearch(e) {
     });
 }
 
-
 function renderFilmsList(list) {
   const markUp = filmsTpl(list);
   refs.gallery.innerHTML = markUp;
 }
 
-
 function onClear() {
   refs.gallery.innerHTML = ' ';
 }
-
 
 function onFetchError() {
   refs.errorMessage.classList.remove('is-hidden');
