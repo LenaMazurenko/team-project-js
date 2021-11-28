@@ -10,3 +10,5 @@ import './js/searchApi';
 import './js/request-popular-movies';
 
 import './js/footer-team-modal';
+
+import './js/backToTopQ';
