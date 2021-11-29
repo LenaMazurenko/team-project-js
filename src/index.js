@@ -6,8 +6,7 @@ import './js/auth';
 import './js/header';
 import './js/movieModal';
 
-import './js/search';
-import './js/apiServiceSearch';
+import './js/searchApi';
 import './js/request-popular-movies';
 
 import './js/footer-team-modal';
