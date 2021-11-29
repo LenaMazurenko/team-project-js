@@ -7,7 +7,7 @@ import './js/header';
 import './js/movieModal';
 
 import './js/search';
-import './jS/apiServiceSearch.js';
+import './js/apiServiceSearch';
 import './js/request-popular-movies';
 
 import './js/footer-team-modal';
