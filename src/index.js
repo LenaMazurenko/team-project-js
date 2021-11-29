@@ -9,5 +9,6 @@ import './js/movieModal';
 import './js/search';
 import './js/apiServiceSearch';
 import './js/request-popular-movies';
+import './js/my-library';
 
 import './js/footer-team-modal';
