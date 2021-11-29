@@ -3,7 +3,7 @@ import MovieModal from './movieModal.js';
 import objectTransformations from './objectTransformations.js';
 import resetRender from './resetRender';
 
-const themeSwitch = document.querySelector('.theme-switch')
+const themeSwitch = document.querySelector('.theme-switch');
 
 const { renderMoviesList, clearGalleryContainer } = resetRender;
 
@@ -22,6 +22,7 @@ export function popularMovies() {
     })
     .then(data => {
       renderMoviesList(data);
+      console.log(data);
       const galleryRefs = document.querySelectorAll('.gallery__list');
       galleryRefs.forEach(el => {
         el.addEventListener('click', () => {
