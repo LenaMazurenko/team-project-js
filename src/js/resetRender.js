@@ -4,6 +4,7 @@ const galleryList = document.getElementById('gallery');
 
 function renderMoviesList(movie) {
   const markup = moviesList(movie);
+  console.log(movie);
   galleryList.innerHTML = markup;
 }
 

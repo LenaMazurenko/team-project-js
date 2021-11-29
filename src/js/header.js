@@ -51,7 +51,7 @@ vars.libraryBtn.addEventListener(
     vars.homeBlock.classList.add('is-none');
     vars.libraryBtn.classList.add('current');
     vars.homeBtn.classList.remove('current');
-  })
+  }),
 );
 
 //Кнопка перехода в дом
@@ -65,17 +65,17 @@ vars.homeBtn.addEventListener(
     vars.homeBlock.classList.remove('is-none');
     vars.libraryBtn.classList.remove('current');
     vars.homeBtn.classList.add('current');
-  })
+  }),
 );
 
 //кнопки библиотек
-vars.watchedBtn.addEventListener('click', () => {
-  //Some code
-});
+//vars.watchedBtn.addEventListener('click', () => {
+//Some code
+//});
 
-vars.queueBtn.addEventListener('click', () => {
-  //Some code
-});
+//vars.queueBtn.addEventListener('click', () => {
+//Some code
+//});
 
 //Кнопки регистрации
 vars.logInBtn.addEventListener(

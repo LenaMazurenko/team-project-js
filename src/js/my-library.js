@@ -7,12 +7,30 @@ import resetRender from './resetRender';
 
 const { renderMoviesList, clearGalleryContainer } = resetRender;
 
-//myLibraryBtn = document.querySelector('button[data-action="to-library"]');
-//myLibraryWatchedBtn = document.querySelector('button[data-action="open-watched-list"]');
-//myLibraryQueueBtn = document.querySelector('button[data-action="open-queue-list"]');
+const myLibraryBtn = document.querySelector('button[data-action="to-library"]');
+const myLibraryWatchedBtn = document.querySelector('button[data-action="open-watched-list"]');
+const myLibraryQueueBtn = document.querySelector('button[data-action="open-queue-list"]');
 
-export function toMyLibrary() {
+myLibraryBtn.addEventListener('click', () => {
+  clearGalleryContainer();
+  if (user.isLogin) {
+    toMyLibrary('watched');
+    toMyLibrary('queue'); //склеить
+  } else {
+    toggleModal();
+  }
+});
+myLibraryWatchedBtn.addEventListener('click', () => toMyLibrary('watched'));
+myLibraryQueueBtn.addEventListener('click', () => toMyLibrary('queue'));
+
+function toMyLibrary(collection) {
   if (user.isLogin) {
     clearGalleryContainer();
-  } else toggleModal();
+    readFromFBHundler(collection).then(data => renderMoviesList(data)); //вывести поля корректно
+  } else {
+    toggleModal();
+  }
 }
+
+//'watched'
+//'queue'
