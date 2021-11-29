@@ -3,6 +3,8 @@ import debounce from 'lodash.debounce';
 import VideoApiService from './apiServiceSearch';
 import MovieModal from './movieModal';
 
+const themeSwitch = document.querySelector('.theme-switch')
+
 const refs = {
   input: document.querySelector('[data-input]'),
   gallery: document.querySelector('.gallery-list'),
@@ -46,6 +48,7 @@ function onSearch(e) {
             const galleryRefs = document.querySelectorAll('.gallery__list');
             galleryRefs.forEach(el => {
               el.addEventListener('click', () => {
+                themeSwitch.classList.add('visualy-hidden');
                 fetch(
                   `https://api.themoviedb.org/3/movie/${el.id}?api_key=0d09eb187785fad1be6a14878e771552&language=en-US`,
                 )
@@ -63,6 +66,7 @@ function onSearch(e) {
             const galleryRefs = document.querySelectorAll('.gallery__list');
             galleryRefs.forEach(el => {
               el.addEventListener('click', () => {
+                themeSwitch.classList.add('visualy-hidden');
                 fetch(
                   `https://api.themoviedb.org/3/movie/${el.id}?api_key=0d09eb187785fad1be6a14878e771552&language=en-US`,
                 )
