@@ -7,12 +7,36 @@ import resetRender from './resetRender';
 
 const { renderMoviesList, clearGalleryContainer } = resetRender;
 
-//myLibraryBtn = document.querySelector('button[data-action="to-library"]');
-//myLibraryWatchedBtn = document.querySelector('button[data-action="open-watched-list"]');
-//myLibraryQueueBtn = document.querySelector('button[data-action="open-queue-list"]');
+const myLibraryBtn = document.querySelector('button[data-action="to-library"]');
+const myLibraryWatchedBtn = document.querySelector('button[data-action="open-watched-list"]');
+const myLibraryQueueBtn = document.querySelector('button[data-action="open-queue-list"]');
 
-export function toMyLibrary() {
+myLibraryBtn.addEventListener('click', renderAllCollections);
+myLibraryWatchedBtn.addEventListener('click', () => renderOneCollection('watched'));
+myLibraryQueueBtn.addEventListener('click', () => renderOneCollection('queue'));
+
+function renderOneCollection(collection) {
   if (user.isLogin) {
     clearGalleryContainer();
-  } else toggleModal();
+    readFromFBHundler(collection).then(data => renderMoviesList(data)); //вывести поля корректно
+  } else {
+    toggleModal();
+  }
+}
+
+async function renderAllCollections() {
+  clearGalleryContainer();
+
+  if (user.isLogin) {
+    let watchObj = await readFromFBHundler('watched').then(data => {
+      return data;
+    });
+    let queueObj = await readFromFBHundler('queue').then(data => {
+      return data;
+    });
+    let summaryObj = [...watchObj].concat(...queueObj);
+    renderMoviesList(summaryObj);
+  } else {
+    toggleModal();
+  }
 }
