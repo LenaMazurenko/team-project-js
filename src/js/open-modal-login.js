@@ -15,7 +15,7 @@ export const modalForm = {
   formSignup: document.querySelector('.modal-signup__form'),
   infoMessageStrLogin: document.querySelector('.modal-login__form .message'),
   infoMessageStrSignup: document.querySelector('.modal-signup__form .message'),
-  userEmail: document.querySelector('.nav__item .user__name'),
+  userEmail: document.querySelector('.user__name'),
 
   clearForm() {
     this.formLogin.reset();
