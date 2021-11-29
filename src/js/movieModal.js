@@ -49,6 +49,7 @@ export default class MovieModal {
         }
         if (response === false) {
           writeToFBHundler('watched', this.object);
+          alert('Successfuly added');
         }
       });
     });

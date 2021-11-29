@@ -4,12 +4,8 @@ const vars = {
   seearchInput: document.querySelector('.searching__input'),
   searchBtn: document.querySelector('.searching__button'),
   errorText: document.querySelector('.searching__error__text'),
-  watchedBtn: document.querySelector(
-    '.library__btn[data-action="open-watched-list"]'
-  ),
-  queueBtn: document.querySelector(
-    '.library__btn[data-action="open-queue-list"]'
-  ),
+  watchedBtn: document.querySelector('.library__btn[data-action="open-watched-list"]'),
+  queueBtn: document.querySelector('.library__btn[data-action="open-queue-list"]'),
   headerBg: document.querySelector('.header__cover'),
   homeBlock: document.querySelector('.home__block'),
   libraryBlock: document.querySelector('.library__block'),
@@ -30,7 +26,7 @@ vars.searchBtn.addEventListener(
     } else {
       vars.errorText.classList.add('is-visible');
     }
-  })
+  }),
 );
 
 //Поиск фильмов по Enter, если никто еще не биндил Enter
@@ -52,7 +48,8 @@ vars.libraryBtn.addEventListener(
     vars.headerBg.classList.remove('home-open');
     vars.libraryBlock.classList.toggle('is-none');
     vars.homeBlock.classList.toggle('is-none');
-  })
+    clearGalleryContainer();
+  }),
 );
 
 //Кнопка перехода в дом
@@ -63,7 +60,7 @@ vars.homeBtn.addEventListener(
     vars.headerBg.classList.remove('cabinet-open');
     vars.libraryBlock.classList.toggle('is-none');
     vars.homeBlock.classList.toggle('is-none');
-  })
+  }),
 );
 
 //кнопки библиотек
@@ -80,7 +77,7 @@ vars.logInBtn.addEventListener(
   'click',
   (LogIn = () => {
     //For logining
-  })
+  }),
 );
 
 /*
