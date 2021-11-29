@@ -4,7 +4,7 @@ import { user } from './auth';
 import { toggleModal } from './open-modal-login';
 import { readFromFBHundler, writeToFBHundler } from './read-write-to-firebase';
 //========================================================
-
+const themeSwitch = document.querySelector('.theme-switch')
 //=====================================================
 
 export default class MovieModal {
@@ -29,11 +29,13 @@ export default class MovieModal {
 
   addEventListeners() {
     this.refs.closeBtn.addEventListener('click', () => {
+      themeSwitch.classList.remove('visualy-hidden');
       this.closeModal();
     });
 
     this.refs.modal.addEventListener('click', e => {
       if (e.target === e.currentTarget) this.closeModal();
+      themeSwitch.classList.remove('visualy-hidden');
     });
 
     //======================   write to Firebase if user is login ========================

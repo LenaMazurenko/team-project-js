@@ -12,3 +12,6 @@ import './js/request-popular-movies';
 import './js/my-library';
 
 import './js/footer-team-modal';
+
+import './js/backToTopQ';
+import './js/theme-switch';
