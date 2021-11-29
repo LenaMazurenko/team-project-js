@@ -187,26 +187,27 @@
 }
 
 .person__photo{
+   
+        border-top-right-radius: 20px;
+        display: block;
+
     @media screen and(max-width:319px){
-        width: 120px;
-        aspect-ratio: 9/12;
+        width: 162px;
     }
     @media screen and(min-width:320px){
-        width: 120px;
-        aspect-ratio: 9/12;
+        width: 236px;
     }
     @media screen and(min-width:768px){
-       width: 120px;
-       aspect-ratio: 9/12;
+        width: 236px;
     }
     @media screen and(min-width:1040px){
-        width: 140px;
-        aspect-ratio: 9/12;
+        width: 162px;
      }
 }
 
 .person{
     position: relative;
+    justify-content: center;
 }
 
 .person__name{
@@ -235,8 +236,12 @@
         display: block;   
     }
     @media screen and (min-width:320px) {
-        display: block;   
+        display: block;  
     }
+    @media screen and (min-width:628px) {
+        display: flex;
+        flex-wrap: wrap;
+     } 
     @media screen and (min-width:768px) {
         display: flex;
         flex-wrap: wrap;
@@ -251,19 +256,30 @@
     border-bottom-left-radius: 20px;
     @media screen and (max-width:319px) {
         margin: 10px;
-        justify-content: center;
+      
+        width: 162px;
     }
     @media screen and (min-width:320px) {
         margin: 10px;
-        justify-content: center;
+        max-width: 236px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
+    @media screen and (min-width:628px) {
+        margin: 30px;
+        flex-basis: calc((100% - 2 * 60px)/2);
+        width: 162px;
+     } 
     @media screen and (min-width:768px) {
         margin: 30px;
         flex-basis: calc((100% - 3 * 60px)/3);
+        width: 162px;
      } 
     
      @media screen and (min-width:1040px) {
         flex-basis: calc((100% - 4 * 60px)/4);
+        width: 162px;
      }
 
 }
