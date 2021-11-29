@@ -71,4 +71,4 @@ const e=document.querySelector(".theme-switch__toggle"),t=document.querySelector
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/open-modal-login"),require("./js/loader"),require("./js/auth"),require("./js/header"),require("./js/movieModal"),require("./js/search"),require("./js/apiServiceSearch"),require("./js/request-popular-movies"),require("./js/my-library"),require("./js/footer-team-modal"),require("./js/backToTopQ"),require("./js/theme-switch");
 },{"./sass/main.scss":"clu1","./js/open-modal-login":"Nqd2","./js/loader":"vQE2","./js/auth":"zSTK","./js/header":"cGsR","./js/movieModal":"z2q0","./js/search":"HU2o","./js/apiServiceSearch":"bUGR","./js/request-popular-movies":"L3If","./js/my-library":"L1LD","./js/footer-team-modal":"Yikq","./js/backToTopQ":"fl0u","./js/theme-switch":"JIhF"}]},{},["Focm"], null)
-//# sourceMappingURL=/team-project-js/src.3d2519c7.js.map
+//# sourceMappingURL=/team-project-js/src.3d12b313.js.map
