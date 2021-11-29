@@ -101,6 +101,7 @@
   font-weight: 500;
   font-size: 20px;
   margin-bottom: 20px;
+  color: $primary-text-color;
 
   @media screen and (min-width: $desktop) {
     font-size: 30px;
@@ -171,6 +172,7 @@
 .movie-modal__about {
   margin-top: 20px;
   margin-bottom: 20px;
+  color: $primary-text-color;
 }
 
 .movie-modal__about-text {

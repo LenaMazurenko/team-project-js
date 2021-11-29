@@ -3,6 +3,8 @@ import MovieModal from './movieModal.js';
 import objectTransformations from './objectTransformations.js';
 import resetRender from './resetRender';
 
+const themeSwitch = document.querySelector('.theme-switch')
+
 const { renderMoviesList, clearGalleryContainer } = resetRender;
 
 const finder = new ApiService();
@@ -23,6 +25,7 @@ export function popularMovies() {
       const galleryRefs = document.querySelectorAll('.gallery__list');
       galleryRefs.forEach(el => {
         el.addEventListener('click', () => {
+          themeSwitch.classList.add('visualy-hidden');
           fetch(
             `https://api.themoviedb.org/3/movie/${el.id}?api_key=0d09eb187785fad1be6a14878e771552&language=en-US`,
           )
