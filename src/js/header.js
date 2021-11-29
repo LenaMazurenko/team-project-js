@@ -48,7 +48,6 @@ vars.libraryBtn.addEventListener(
     vars.headerBg.classList.remove('home-open');
     vars.libraryBlock.classList.toggle('is-none');
     vars.homeBlock.classList.toggle('is-none');
-    clearGalleryContainer();
   }),
 );
 
