@@ -34,8 +34,14 @@ async function renderAllCollections() {
       return data;
     });
     let summaryObj = [...watchObj].concat(...queueObj);
+
+    checkOnNecessaryPagination(summaryObj);
     renderLibraryList(summaryObj);
   } else {
     toggleModal();
   }
+}
+
+function checkOnNecessaryPagination(num) {
+  if (num.length <= 6) document.querySelector('.tui-pagination').style.visibility = 'hidden';
 }
