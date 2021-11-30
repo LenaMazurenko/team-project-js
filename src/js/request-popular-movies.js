@@ -44,7 +44,6 @@ export function popularMovies() {
 
     .catch(err => console.warn(err));
 }
-
 popularMovies();
 
 //==============================
@@ -52,19 +51,19 @@ const paginationBack = document.querySelector('button[data-action="back"]');
 const paginationForward = document.querySelector('button[data-action="forward"]');
 
 paginationBack.addEventListener('click', paginationBackHundler);
+paginationForward.addEventListener('click', paginationForwardHundler);
+
 function paginationBackHundler() {
   if (finder.pageDesktop >= 6) {
     finder.pageDesktop -= 6;
     renderMoviesList(finder.moviesArray.slice(finder.pageDesktop, finder.pageDesktop + 6));
   }
 }
-
-paginationForward.addEventListener('click', paginationForwardHundler);
 function paginationForwardHundler() {
   // finder.moviesArray = [...finder.moviesArray].concat([...data]);
   finder.pageDesktop += 6;
   if (finder.pageDesktop + 6 < finder.moviesArray.length) {
-    finder.page += finder.page;
+    finder.page += 1;
     popularMovies();
   }
   renderMoviesList(finder.moviesArray.slice(finder.pageDesktop, finder.pageDesktop + 6));
