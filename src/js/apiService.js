@@ -7,6 +7,8 @@ export default class ApiService {
     this.totalPagesFound = 0;
     this.key = '0d09eb187785fad1be6a14878e771552';
     this.moviesUrls = [];
+    this.moviesArray = [];
+    this.pageDesktop = 0;
     // this.language = '';
   }
 
@@ -28,7 +30,7 @@ export default class ApiService {
 
     return fetch(url)
       .then(response => response.json())
-      
+
       .catch(err => console.log(err));
   }
   searchGenres() {
@@ -44,7 +46,4 @@ export default class ApiService {
       .then(data => localStorage.setItem('Genres', JSON.stringify(data.genres)))
       .catch(err => console.log(err));
   }
-
-  
 }
-
