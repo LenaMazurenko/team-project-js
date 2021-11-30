@@ -23,7 +23,6 @@ export function popularMovies() {
     .then(data => {
       finder.moviesArray = [...finder.moviesArray].concat([...data]);
       renderMoviesList(finder.moviesArray.slice(finder.pageDesktop, finder.pageDesktop + 6));
-      finder.pageDesktop += 6;
 
       const galleryRefs = document.querySelectorAll('.gallery__list');
       galleryRefs.forEach(el => {
@@ -52,15 +51,24 @@ popularMovies();
 const paginationBack = document.querySelector('button[data-action="back"]');
 const paginationForward = document.querySelector('button[data-action="forward"]');
 
-/*paginationBack.addEventListener('click', paginationBackHundler);
+paginationBack.addEventListener('click', paginationBackHundler);
 function paginationBackHundler() {
-  if (finder.pageDesktop > 1) {
-    console.log(finder.moviesArray.slice());
+  if (finder.pageDesktop >= 6) {
+    finder.pageDesktop -= 6;
+    renderMoviesList(finder.moviesArray.slice(finder.pageDesktop, finder.pageDesktop + 6));
   }
 }
-*/
 
-paginationForward.addEventListener('click', popularMovies);
+paginationForward.addEventListener('click', paginationForwardHundler);
+function paginationForwardHundler() {
+  // finder.moviesArray = [...finder.moviesArray].concat([...data]);
+  finder.pageDesktop += 6;
+  if (finder.pageDesktop + 6 < finder.moviesArray.length) {
+    finder.page += finder.page;
+    popularMovies();
+  }
+  renderMoviesList(finder.moviesArray.slice(finder.pageDesktop, finder.pageDesktop + 6));
+}
 
 //document.body.clientWidth
 window.addEventListener('resize', function calculateElementsForOutput() {}, false);

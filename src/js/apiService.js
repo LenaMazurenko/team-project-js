@@ -1,7 +1,7 @@
 export default class ApiService {
   constructor() {
     this.query = '';
-    this.page = 2;
+    this.page = 1;
     this.searchIndex = 3;
     this.totalResultsFound = 0;
     this.totalPagesFound = 0;
