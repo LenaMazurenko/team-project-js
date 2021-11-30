@@ -65,6 +65,7 @@ vars.homeBtn.addEventListener(
     vars.homeBlock.classList.remove('is-none');
     vars.libraryBtn.classList.remove('current');
     vars.homeBtn.classList.add('current');
+	location.reload();				  
   }),
 );
 
