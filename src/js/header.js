@@ -38,6 +38,7 @@ const ToHome = () => {
 location.reload();				  
 }
 vars.homeBtn.addEventListener('click', ToHome);
+vars.logolink.addEventListener('click', ToHome);
 
 
 

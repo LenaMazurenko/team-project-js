@@ -13,4 +13,5 @@ export const vars = {
     RegisterBtn: document.querySelector('.reg__btn[data-action="register"]'),
     UsrName: document.querySelector('.user__name'),
     RegList: document.querySelector('.reg__list'),
+    logolink:document.querySelector('.logo__link'),
   };
