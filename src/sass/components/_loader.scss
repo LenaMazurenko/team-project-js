@@ -1,101 +1,46 @@
-.loader {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
+.preloader {
   position: fixed;
-  bottom: 0;
   left: 0;
-  right: 0;
   top: 0;
-  opacity: 0;
-  z-index: 5;
-  pointer-events: none;
-  &.is-loader-open {
-    opacity: 1;
-    pointer-events: initial;
-  }
-}
-.circle {
-  animation: resize 1s linear infinite;
-  position: relative;
-  background: #ec8729ec;
-  border-radius: 50%;
-  height: 100px;
-  width: 100px;
-  &::after {
-    animation: rotate 1s linear infinite;
-    content: '';
-    display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.56);
+  z-index: 2;
+  transition: 1s all;
+  opacity: 0.95;
+  visibility: visible;
+  .loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
     width: 120px;
     height: 120px;
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    border: 10px solid transparent;
-    border-top-color: #6d6875;
+    border: 16px solid orange;
     border-radius: 50%;
+    border-top: 16px solid orange;
+    border-bottom: 16px solid transparent;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 3s linear infinite;
+    transform: translate(-50%, -50%);
+  }
+  &.done {
+    opacity: 0;
+    visibility: hidden;
   }
 }
-@keyframes rotate {
+@-webkit-keyframes spin {
   0% {
-  }
-  70% {
-    transform: rotate(250deg);
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
   }
 }
-@keyframes resize {
-  40% {
-    transform: scale(1);
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
   }
-  70% {
-    transform: scale(1.1);
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
-// .loader {
-//   position: fixed;
-//   left: 0;
-//   top: 0;
-//   width: 100%;
-//   height: 100%;
-//   background: grey;
-//   z-index: 2;
-//   transition: 3s;
-//   opacity: 0.7;
-//   visibility: visible;
-
-//   .circle {
-//     width: 75px;
-//     height: 75px;
-//     border: 10px solid white;
-//     border-radius: 50%;
-//     border-top-color: orange;
-//     position: absolute;
-//     left: 50%;
-//     top: 50%;
-//     transform: translate(-50%, -50%);
-//     animation: 2s spin infinite linear;
-//     &.done {
-//       opacity: 0;
-//       visibility: hidden;
-//     }
-//   }
-// }
-
-// @keyframes spin {
-//   from {
-//     transform: translate(-50%, -50%) rotate(0deg);
-//   }
-//   to {
-//     transform: translate(-50%, -50%) rotate(360deg);
-//   }
-// }
-
-// .hidden {
-//   pointer-events: none;
-//   opacity: 0;
-// }

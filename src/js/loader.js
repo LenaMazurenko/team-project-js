@@ -1,29 +1,9 @@
-export class Loader {
-  constructor(selector = '.loader') {
-    this.isOpen = false;
-    this.loaderRef = document.querySelector(selector);
-  }
-  toggle() {
-    if (this.isOpen) {
-      this.closeLoader();
-    } else {
-      this.openLoader();
+ body = document.body;
+document.body.onload = function () {
+  setTimeout(function () {
+    const preloader = document.getElementById('page-preloader');
+    if (!preloader.classList.contains('done')) {
+      preloader.classList.add('done');
     }
-  }
-
-  openLoader() {
-    this.loaderRef.classList.add('is-loader-open');
-    this.isOpen = true;
-  }
-
-  closeLoader() {
-    setTimeout(() => {
-      this.loaderRef.classList.remove('is-loader-open');
-      this.isOpen = false;
-    }, 550);
-  }
-
-  status() {
-    return this.isOpen;
-  }
-}
+  }, 5000);
+};
