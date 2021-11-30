@@ -1,18 +1,29 @@
-let hide = document.querySelector('.hide');
+export class Loader {
+  constructor(selector = '.loader') {
+    this.isOpen = false;
+    this.loaderRef = document.querySelector(selector);
+  }
+  toggle() {
+    if (this.isOpen) {
+      this.closeLoader();
+    } else {
+      this.openLoader();
+    }
+  }
 
-window.addEventListener('load', () => {
-  hide.classList.add('behind');
-  setTimeout(() => {
-    hide.remove();
-  }, 1000);
-});
+  openLoader() {
+    this.loaderRef.classList.add('is-loader-open');
+    this.isOpen = true;
+  }
 
-// Window.onload = function () {
-//     setTimeout(function () {
-//         var preloader = document.getElementById('page-preloader');
-//         if (!preloader.classList.contains('done'))
-//         {
-//             preloader.classList.add('done')
-//             }
-//      },10)
-// }
+  closeLoader() {
+    setTimeout(() => {
+      this.loaderRef.classList.remove('is-loader-open');
+      this.isOpen = false;
+    }, 550);
+  }
+
+  status() {
+    return this.isOpen;
+  }
+}
