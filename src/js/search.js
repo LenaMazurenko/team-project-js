@@ -3,7 +3,7 @@ import debounce from 'lodash.debounce';
 import VideoApiService from './apiServiceSearch';
 import MovieModal from './movieModal';
 
-const themeSwitch = document.querySelector('.theme-switch')
+const themeSwitch = document.querySelector('.theme-switch');
 
 const refs = {
   input: document.querySelector('[data-input]'),
@@ -13,78 +13,65 @@ const refs = {
 };
 
 // Поиск по ключевому слову
-const filmApiService = new VideoApiService();
+const filmApiSearch = new VideoApiService();
 
 refs.input.addEventListener(
   'input',
-  debounce(e => {
+  debounce((e) => {
     onSearch(e);
-  }, 1000),
+  }, 1000)
 );
+filmApiSearch.page = 1;
 
 function onSearch(e) {
   e.preventDefault();
   onClear();
-  filmApiService.query = e.target.value;
-  filmApiService.pageNum = 1;
+  filmApiSearch.query = e.target.value;
+
   refs.main.classList.add('is-hidden'); //-----------------убрать как появиться пагин
   refs.errorMessage.classList.add('is-hidden');
-  if (filmApiService.query === '') {
+  if (filmApiSearch.query === '') {
     refs.main.classList.remove('is-hidden'); //-----------------убрать как появиться пагин
     return;
   }
 
-  filmApiService
+  filmApiSearch
     .insertGenresToSearch()
-    .then(data => {
+    .then((data) => {
       if (!data) {
         return;
+      }
+      if (data.length === 0) {
+        onFetchError();
+      }
+      if (data.length < 20) {
+        renderFilmsList(data);
+        filmApiSearch.moviesArray = [...filmApiSearch.moviesArray].concat([
+          ...data,
+        ]);
+        renderMoviesList(
+          filmApiSearch.moviesArray.slice(
+            filmApiSearch.pageDesktop,
+            filmApiSearch.pageDesktop + 6
+          )
+        );
+        modal();
       } else {
-        if (data.length === 0) {
-          onFetchError();
-        } else {
-          if (data.length < 20) {
-            renderFilmsList(data);
-            const galleryRefs = document.querySelectorAll('.gallery__list');
-            galleryRefs.forEach(el => {
-              el.addEventListener('click', () => {
-                themeSwitch.classList.add('visualy-hidden');
-                fetch(
-                  `https://api.themoviedb.org/3/movie/${el.id}?api_key=0d09eb187785fad1be6a14878e771552&language=en-US`,
-                )
-                  .then(response => response.json())
-                  .then(response => {
-                    const info = new MovieModal(response);
-                    info.appendMarkup();
-                    info.getRefs();
-                    info.addEventListeners();
-                  });
-              });
-            });
-          } else {
-            renderFilmsList(data);
-            const galleryRefs = document.querySelectorAll('.gallery__list');
-            galleryRefs.forEach(el => {
-              el.addEventListener('click', () => {
-                themeSwitch.classList.add('visualy-hidden');
-                fetch(
-                  `https://api.themoviedb.org/3/movie/${el.id}?api_key=0d09eb187785fad1be6a14878e771552&language=en-US`,
-                )
-                  .then(response => response.json())
-                  .then(response => {
-                    const info = new MovieModal(response);
-                    info.appendMarkup();
-                    info.getRefs();
-                    info.addEventListeners();
-                  });
-              });
-            });
-            fetchDataOfSearchFilms();
-          }
-        }
+        renderFilmsList(data);
+        filmApiSearch.moviesArray = [...filmApiSearch.moviesArray].concat([
+          ...data,
+        ]);
+        renderMoviesList(
+          filmApiSearch.moviesArray.slice(
+            filmApiSearch.pageDesktop,
+            filmApiSearch.pageDesktop + 6
+          )
+        );
+        modal();
+        fetchDataOfSearchFilms();
       }
     })
-    .catch(err => {
+    .catch((err) => {
       onFetchError(err);
     });
 }
@@ -101,3 +88,67 @@ function onClear() {
 function onFetchError() {
   refs.errorMessage.classList.remove('is-hidden');
 }
+
+function modal() {
+  const galleryRefs = document.querySelectorAll('.gallery__list');
+  galleryRefs.forEach((el) => {
+    el.addEventListener('click', () => {
+      themeSwitch.classList.add('visualy-hidden');
+      fetch(
+        `https://api.themoviedb.org/3/movie/${el.id}?api_key=0d09eb187785fad1be6a14878e771552&language=en-US`
+      )
+        .then((response) => response.json())
+        .then((response) => {
+          const info = new MovieModal(response);
+          info.appendMarkup();
+          info.getRefs();
+          info.addEventListeners();
+        });
+    });
+  });
+}
+
+//==============================
+// const paginationBack = document.querySelector(
+//   'button[data-action="back-search"]'
+// );
+// const paginationForward = document.querySelector(
+//   'button[data-action="forward-search"]'
+// );
+
+// paginationBack.addEventListener('click', paginationBackHundler);
+// paginationForward.addEventListener('click', paginationForwardHundler);
+
+// function paginationBackHundler() {
+//   if (filmApiSearch.pageDesktop >= 6) {
+//     filmApiSearch.pageDesktop -= 6;
+//     renderMoviesList(
+//       filmApiSearch.moviesArray.slice(
+//         filmApiSearch.pageDesktop,
+//         filmApiSearch.pageDesktop + 6
+//       )
+//     );
+//   }
+// }
+// function paginationForwardHundler() {
+//   // finder.moviesArray = [...finder.moviesArray].concat([...data]);
+//   filmApiSearch.pageDesktop += 6;
+//   if (filmApiSearch.pageDesktop + 6 < filmApiSearch.moviesArray.length) {
+//     filmApiSearch.page += 1;
+//     // onSearch(e);
+//   }
+//   renderMoviesList(
+//     filmApiSearch.moviesArray.slice(
+//       filmApiSearch.pageDesktop,
+//       filmApiSearch.pageDesktop + 6
+//     )
+//   );
+// }
+
+// //document.body.clientWidth
+// window.addEventListener(
+//   'resize',
+//   function calculateElementsForOutput() {},
+//   false
+// );
+// function calculateElementsForOutput() {}

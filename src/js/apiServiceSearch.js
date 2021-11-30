@@ -5,6 +5,8 @@ export default class VideoApiService {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
+    this.moviesArray = [];
+    this.pageDesktop = 0;
   }
 
   fetchVideo() {
