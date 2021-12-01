@@ -4,12 +4,8 @@ export const vars = {
   seearchInput: document.querySelector('.searching__input'),
   searchBtn: document.querySelector('.searching__button'),
   errorText: document.querySelector('.searching__error__text'),
-  watchedBtn: document.querySelector(
-    '.library__btn[data-action="open-watched-list"]'
-  ),
-  queueBtn: document.querySelector(
-    '.library__btn[data-action="open-queue-list"]'
-  ),
+  watchedBtn: document.querySelector('.library__btn[data-action="open-watched-list"]'),
+  queueBtn: document.querySelector('.library__btn[data-action="open-queue-list"]'),
   headerBg: document.querySelector('.header__cover'),
   homeBlock: document.querySelector('.home__block'),
   libraryBlock: document.querySelector('.library__block'),

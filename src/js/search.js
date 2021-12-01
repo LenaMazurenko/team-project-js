@@ -10,9 +10,9 @@ const filmApiService = new VideoApiService();
 
 refs.input.addEventListener(
   'input',
-  debounce((e) => {
+  debounce(e => {
     onSearch(e);
-  }, 1000)
+  }, 1000),
 );
 
 function onSearch(e) {
@@ -29,7 +29,7 @@ function onSearch(e) {
 
   filmApiService
     .insertGenresToSearch()
-    .then((data) => {
+    .then(data => {
       if (!data) {
         return;
       } else {
@@ -47,13 +47,13 @@ function onSearch(e) {
         }
       }
     })
-    .catch((err) => {
+    .catch(err => {
       onFetchError(err);
     });
 }
 
 function renderFilmsList(list) {
-  const markUp = filmsTpl(list);
+  const markUp = filmsTpl(list.slice(0, 6));
   refs.gallery.innerHTML = markUp;
 }
 
@@ -67,14 +67,14 @@ function onFetchError() {
 
 function moidalCreate() {
   const galleryRefs = document.querySelectorAll('.gallery__list');
-  galleryRefs.forEach((el) => {
+  galleryRefs.forEach(el => {
     el.addEventListener('click', () => {
       themeSwitch.classList.add('visualy-hidden');
       fetch(
-        `https://api.themoviedb.org/3/movie/${el.id}?api_key=0d09eb187785fad1be6a14878e771552&language=en-US`
+        `https://api.themoviedb.org/3/movie/${el.id}?api_key=0d09eb187785fad1be6a14878e771552&language=en-US`,
       )
-        .then((response) => response.json())
-        .then((response) => {
+        .then(response => response.json())
+        .then(response => {
           const info = new MovieModal(response);
           info.appendMarkup();
           info.getRefs();
