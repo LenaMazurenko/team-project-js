@@ -4,10 +4,7 @@ import VideoApiService from './apiServiceSearch';
 import MovieModal from './movieModal';
 import { vars } from './variables';
 
-const themeSwitch = document.querySelector('.theme-switch');
 const refs = vars;
-
-// Поиск по ключевому слову
 const filmApiService = new VideoApiService();
 
 refs.input.addEventListener(
