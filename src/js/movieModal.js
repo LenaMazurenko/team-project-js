@@ -3,8 +3,9 @@ import movieModal from '../templates/movie-modal.hbs';
 import { user } from './auth';
 import { toggleModal } from './open-modal-login';
 import { readFromFBHundler, writeToFBHundler } from './read-write-to-firebase';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 //========================================================
-const themeSwitch = document.querySelector('.theme-switch')
+const themeSwitch = document.querySelector('.theme-switch');
 //=====================================================
 
 export default class MovieModal {
@@ -47,11 +48,11 @@ export default class MovieModal {
       //============check on existence in FB========================
       checkForExistence('watched', this.object).then(response => {
         if (response === true) {
-          alert('This movie has already been added');
+          Notify.failure('This movie has already been added');
         }
         if (response === false) {
           writeToFBHundler('watched', this.object);
-          alert('Successfuly added');
+          Notify.success('Successfuly added');
         }
       });
     });
@@ -65,10 +66,11 @@ export default class MovieModal {
       //============check on existence in FB========================
       checkForExistence('queue', this.object).then(response => {
         if (response === true) {
-          alert('This movie has already been added');
+          Notify.failure('This movie has already been added');
         }
         if (response === false) {
           writeToFBHundler('queue', this.object);
+          Notify.success('Successfuly added');
         }
       });
     });
