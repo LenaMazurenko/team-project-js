@@ -123,6 +123,7 @@
 
 //modal
 .team__backdrop{
+    z-index: 999;
     position: fixed;
     background-color: $team-back;
 
@@ -211,6 +212,7 @@
 }
 
 .person__name{
+    color: $primary-text-color;
     position: absolute;
     background-color: $overlay-orange;
     bottom: 0;
@@ -228,6 +230,7 @@
     text-align: center;
     padding-top: 5px;
     padding-bottom: 5px;
+    color: $primary-text-color;
 
 }
 
