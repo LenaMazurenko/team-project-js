@@ -75,4 +75,4 @@ const e=document.querySelector(".theme-switch__toggle"),t=document.querySelector
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/open-modal-login"),require("./js/loader"),require("./js/auth"),require("./js/header"),require("./js/my-library"),require("./js/movieModal"),require("./js/search"),require("./js/apiServiceSearch"),require("./js/request-popular-movies"),require("./js/footer-team-modal"),require("./js/backToTopQ"),require("./js/theme-switch"),require("./js/variables");
 },{"./sass/main.scss":"clu1","./js/open-modal-login":"Nqd2","./js/loader":"vQE2","./js/auth":"zSTK","./js/header":"cGsR","./js/my-library":"L1LD","./js/movieModal":"z2q0","./js/search":"HU2o","./js/apiServiceSearch":"bUGR","./js/request-popular-movies":"L3If","./js/footer-team-modal":"Yikq","./js/backToTopQ":"fl0u","./js/theme-switch":"JIhF","./js/variables":"u9EY"}]},{},["Focm"], null)
-//# sourceMappingURL=/team-project-js/src.ffcf46e0.js.map
+//# sourceMappingURL=/team-project-js/src.1af49078.js.map
