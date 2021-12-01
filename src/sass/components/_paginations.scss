@@ -1,0 +1,28 @@
+.tui-pagination {
+  margin-top: 50px;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-arrow {
+  width: 40px;
+  height: 40px;
+  font-size: 30px;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  color: $primary-text-color;
+  background-color: $secondary-bg-color;
+  &:hover {
+    color: $accent-text-color;
+  }
+}
+
+.btn-arrow a {
+  display: block;
+  width: 200px;
+  background-color: transparent;
+  font-weight: 400;
+  padding: 50px;
+}
