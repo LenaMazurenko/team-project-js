@@ -7,9 +7,7 @@
 
   padding-top: 20px;
   padding-bottom: 40px;
-  @media screen and (min-width: 320px) {
-    padding-top: 0;
-  }
+ 
 }
 
 
@@ -73,7 +71,10 @@
   .main {
     padding-top: 60px;
     padding-bottom: 50px;
+    
   }
+
+  
 
   .gallery {
     display: flex;
