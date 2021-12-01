@@ -1,4 +1,4 @@
-import Loader from './loader';
+import loader from './loader';
 import ApiService from './apiService.js';
 import MovieModal from './movieModal.js';
 import objectTransformations from './objectTransformations.js';
@@ -12,10 +12,10 @@ const finder = new ApiService();
 finder.searchType = 0;
 finder.searchGenres();
 
-export const loader = () => {
-  preloader.classList.toggle("show");
+/*loader = () => {
+  preloader.classList.toggle('show');
 };
-
+*/
 export function popularMovies() {
   clearGalleryContainer();
 
@@ -28,7 +28,6 @@ export function popularMovies() {
     .then(data => {
       finder.moviesArray = [...finder.moviesArray].concat([...data]);
       renderMoviesList(finder.moviesArray.slice(finder.pageDesktop, finder.pageDesktop + 6));
-
       const galleryRefs = document.querySelectorAll('.gallery__list');
       galleryRefs.forEach(el => {
         el.addEventListener('click', () => {
