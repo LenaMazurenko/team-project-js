@@ -1,3 +1,4 @@
+import Loader from './loader';
 import ApiService from './apiService.js';
 import MovieModal from './movieModal.js';
 import objectTransformations from './objectTransformations.js';
@@ -10,6 +11,10 @@ const { renderMoviesList, clearGalleryContainer } = resetRender;
 const finder = new ApiService();
 finder.searchType = 0;
 finder.searchGenres();
+
+export const loader = () => {
+  preloader.classList.toggle("show");
+};
 
 export function popularMovies() {
   clearGalleryContainer();
