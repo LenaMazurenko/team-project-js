@@ -15,3 +15,5 @@ import './js/footer-team-modal';
 
 import './js/backToTopQ';
 import './js/theme-switch';
+
+import './js/variables';
