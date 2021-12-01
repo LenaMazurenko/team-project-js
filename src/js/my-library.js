@@ -2,10 +2,9 @@ import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { user } from './auth';
 import { toggleModal } from './open-modal-login';
 import { readFromFBHundler, writeToFBHundler } from './read-write-to-firebase';
-import main from '../templates/main-cards.hbs';
 import resetRender from './resetRender';
 
-const { renderMoviesList, clearGalleryContainer } = resetRender;
+const { renderLibraryList, clearGalleryContainer } = resetRender;
 
 const myLibraryBtn = document.querySelector('button[data-action="to-library"]');
 const myLibraryWatchedBtn = document.querySelector('button[data-action="open-watched-list"]');
@@ -18,7 +17,7 @@ myLibraryQueueBtn.addEventListener('click', () => renderOneCollection('queue'));
 function renderOneCollection(collection) {
   if (user.isLogin) {
     clearGalleryContainer();
-    readFromFBHundler(collection).then(data => renderMoviesList(data)); //вывести поля корректно
+    readFromFBHundler(collection).then(data => renderLibraryList(data)); //вывести поля корректно
   } else {
     toggleModal();
   }
@@ -35,8 +34,14 @@ async function renderAllCollections() {
       return data;
     });
     let summaryObj = [...watchObj].concat(...queueObj);
-    renderMoviesList(summaryObj);
+
+    checkOnNecessaryPagination(summaryObj);
+    renderLibraryList(summaryObj);
   } else {
     toggleModal();
   }
+}
+
+function checkOnNecessaryPagination(num) {
+  if (num.length <= 6) document.querySelector('.tui-pagination').style.visibility = 'hidden';
 }

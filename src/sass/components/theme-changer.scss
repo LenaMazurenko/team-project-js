@@ -16,7 +16,10 @@
   .theme-switch {
     display: flex;
     align-items: center;
-    justify-content: flex-end
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+
   }
   
   .theme-switch__icon {

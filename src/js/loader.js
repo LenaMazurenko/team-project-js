@@ -1,18 +1,41 @@
-let hide = document.querySelector('.hide');
-
-window.addEventListener('load', () => {
-  hide.classList.add('behind');
-  setTimeout(() => {
-    hide.remove();
+ export function loader () {
+  setTimeout(function () {
+    const preloader = document.getElementById('page-preloader');
+    if (!preloader.classList.contains('done')) {
+      preloader.classList.add('done');
+    }
   }, 1000);
-});
+};
+document.body.onload = loader;
 
-// Window.onload = function () {
-//     setTimeout(function () {
-//         var preloader = document.getElementById('page-preloader');
-//         if (!preloader.classList.contains('done'))
-//         {
-//             preloader.classList.add('done')
-//             }
-//      },10)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+// function getData() {
+//   hide.classList.add('loader');
+//   return fetch(URL='https://api.themoviedb.org/3')
+//     .then()
+//     .catch()
+//     .finally(() => {
+//       hide.classList.remove('loader');
+//     });
 // }
