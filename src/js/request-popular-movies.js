@@ -64,7 +64,6 @@ function paginationBackHundler() {
   }
 }
 function paginationForwardHundler() {
-  // finder.moviesArray = [...finder.moviesArray].concat([...data]);
   finder.pageDesktop += 6;
   if (finder.pageDesktop + 6 < finder.moviesArray.length) {
     finder.page += 1;

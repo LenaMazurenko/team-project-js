@@ -17,7 +17,7 @@ myLibraryQueueBtn.addEventListener('click', () => renderOneCollection('queue'));
 function renderOneCollection(collection) {
   if (user.isLogin) {
     clearGalleryContainer();
-    readFromFBHundler(collection).then(data => renderLibraryList(data)); //вывести поля корректно
+    readFromFBHundler(collection).then(data => renderLibraryList(data));
   } else {
     toggleModal();
   }
@@ -35,13 +35,8 @@ async function renderAllCollections() {
     });
     let summaryObj = [...watchObj].concat(...queueObj);
 
-    checkOnNecessaryPagination(summaryObj);
     renderLibraryList(summaryObj);
   } else {
     toggleModal();
   }
-}
-
-function checkOnNecessaryPagination(num) {
-  if (num.length <= 6) document.querySelector('.tui-pagination').style.visibility = 'hidden';
 }
