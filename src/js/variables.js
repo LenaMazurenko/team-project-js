@@ -23,6 +23,4 @@ export const vars = {
   gallery: document.querySelector('.gallery-list'),
   main: document.querySelector('.main'),
   errorMessage: document.querySelector('[data-error]'),
-  //Modal
-  themeSwitch: document.querySelector('.theme-switch'),
 };
