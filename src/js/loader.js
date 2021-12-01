@@ -1,35 +1,13 @@
- export function loader () {
+export function loader() {
   setTimeout(function () {
     const preloader = document.getElementById('page-preloader');
     if (!preloader.classList.contains('done')) {
       preloader.classList.add('done');
     }
-  }, 1000);
-};
+  }, 250);
+}
 document.body.onload = loader;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
 // function getData() {
 //   hide.classList.add('loader');
 //   return fetch(URL='https://api.themoviedb.org/3')
